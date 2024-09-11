@@ -1,0 +1,40 @@
+.menu {
+    position: relative;
+    z-index: 1000;
+}
+
+.menu .menu-image {
+    height: 40px;
+    background-color: #FFFFFF;
+    padding: 3px;
+    border-radius: 12px;
+    cursor: pointer;
+    margin: 10px;
+    z-index: 1001;
+}
+
+.menu .menu-options {
+    position: absolute;
+    top: 50%;
+    right: 100%;
+    width: 250px;
+    background-color: #FFFFFF;
+    box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.08);
+    border: 2px solid #000000;
+    border-radius: 10px;
+    z-index: 1000;
+}
+
+.menu-options .menu-item {
+    padding: 10px;
+    text-decoration: none;
+    color: black;
+    display: block;
+    text-align: center;
+    border-radius: 10px;
+    cursor: pointer;
+}
+  
+.menu-options .menu-item:hover {
+    color: #6278f7;
+}

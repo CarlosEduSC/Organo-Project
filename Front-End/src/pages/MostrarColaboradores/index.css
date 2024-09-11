@@ -1,0 +1,26 @@
+.mostrar-colaboradores {
+    text-align: center;
+    padding: 32px;
+    background-image: url(../../../images/fundo.png);
+    background-color: #F5F5F5;
+}
+
+.mostrar-colaboradores .colaboradores {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 32px;
+    flex-wrap: wrap;
+}
+
+.sem-colaboradores {
+    text-align: center;
+    padding: 32px;
+    background-image: url(../../../images/fundo.png);
+    background-color: #F5F5F5;
+    height: 604px;
+}
+
+.sem-colaboradores h1 {
+    color: #6278f7;
+    font-size: 50px;
+}

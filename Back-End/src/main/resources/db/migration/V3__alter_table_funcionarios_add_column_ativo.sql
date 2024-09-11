@@ -1,0 +1,1 @@
+alter table funcionarios add ativo tinyint not null;

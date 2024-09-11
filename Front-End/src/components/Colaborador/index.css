@@ -1,0 +1,75 @@
+.colaborador {
+    width: 280px;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.colaborador .cabecalho {
+    height: 60px;
+    border-radius: 10px 10px 0px 0px;
+    position: relative;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.colaborador .foto {
+    width: 100px;
+    border-radius: 50%;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 2px solid #FFFFFF;
+    cursor: pointer;
+}
+
+.colaborador .excluir {
+    width: 30px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    visibility: hidden;
+}
+
+.colaborador .editar {
+    width: 35px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    cursor: pointer;
+    visibility: hidden;
+}
+
+.colaborador:hover .excluir,
+.colaborador:hover .editar {
+    visibility: visible;
+}
+
+.colaborador .rodape {
+    background-color: #FFFFFF;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.08);
+    border-radius: 0px 0px 10px 10px;
+    padding-top: 50px;
+    padding-bottom: 1px;
+}
+
+.colaborador .rodape h4 {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    cursor: pointer;
+}
+
+.colaborador .rodape h5 {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    color: #212121;
+}

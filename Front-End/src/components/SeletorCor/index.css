@@ -1,0 +1,21 @@
+.seletor-cor label {
+    display: block;
+    margin-bottom: 8px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+}
+
+.seletor-cor .color-show {
+    height: 30px;
+    width: 50%;
+    border-radius: 4px;
+    border: 2px solid black;
+    margin: auto;
+    margin-top: 5px;
+}
+
+/* .seletor-cor .slider-cor {
+    width: 100%;
+} */
