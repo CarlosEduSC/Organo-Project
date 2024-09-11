@@ -1,15 +1,14 @@
 import './index.css'
 import Banner from '../../components/Banner'
 import { useEffect, useState } from 'react';
-import { ITime } from '../../shared/interfaces/ITime';
+import { ITime } from '../../shared/interfaces/IEquipe';
 import { IColaborador } from '../../shared/interfaces/IColaborador';
-import { buscarTimes } from '../../shared/methods/Time/BuscarTimes';
+import { buscarTimes } from '../../shared/methods/Equipe/BuscarTodasEquipes';
 import Time from '../../components/Time';
 import { buscarTodosColaboradoresAtivos } from '../../shared/methods/Colaborador/BuscarTodosColaboradoresAtivos';
 
 const PaginaInicial = () => {
   const [times, setTimes] = useState<ITime[]>([]);
-  const [colaboradores, setColaboradores] = useState<IColaborador[]>([]);
 
   useEffect(() => {
     const fetchTimes = async () => {
@@ -20,16 +19,6 @@ const PaginaInicial = () => {
     fetchTimes();
   }, []);
 
-  useEffect(() => {
-    const fetchColaboradores = async () => {
-      const colaboradores = await buscarTodosColaboradoresAtivos();
-      setColaboradores(colaboradores);
-    };
-
-    fetchColaboradores();
-
-  }, []);
-
   return (
     <section className='paginaInicial'>
 
@@ -37,10 +26,7 @@ const PaginaInicial = () => {
 
       {times.map(time => <Time
         key={time.id}
-        nome={time.nome}
-        corPrimaria={time.corPrimaria}
-        corSecundaria={time.corSecundaria}
-        colaboradores={colaboradores}
+        time={time}
         mostrarRemoverColaborador={false}
       />)}
     </section>

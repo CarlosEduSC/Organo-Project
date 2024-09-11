@@ -3,7 +3,7 @@ import api from "../api";
 
 export const buscarColaborador = async (id: bigint): Promise<IColaborador> => {
 
-    const response = await api.get("/funcionario/buscar/" + id);
+    const response = await api.get("/colaborador/buscar/" + id);
 
     try {
         if (response.status !== 200) {

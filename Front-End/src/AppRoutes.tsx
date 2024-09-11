@@ -23,9 +23,11 @@ const AppRoutes = () => {
 
                     <Route path="/cadastrarTime" element={<ProtectedRoute element={<CadastroTime />} />} />
 
-                    <Route path="/mostrarTime/:nomeTime" element={<ProtectedRoute element={<MostrarTime/>}/>}/>
+                    <Route path="/mostrarTime/:idTime" element={<ProtectedRoute element={<MostrarTime/>}/>}/>
 
-                    <Route path="/colaboradores" element={<ProtectedRoute element={<MostrarColaboradores />} />} />
+                    <Route path="/adicionarColaborador/:idTime" element={<ProtectedRoute element={<MostrarColaboradores adicionar={true}/>} />} />
+
+                    <Route path="/colaboradores" element={<ProtectedRoute element={<MostrarColaboradores excluirEditar={true}/>} />} />
 
                     <Route path="/login" element={<Login/>}/>
 

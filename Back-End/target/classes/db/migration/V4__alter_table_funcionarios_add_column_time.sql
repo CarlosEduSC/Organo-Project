@@ -1,1 +1,0 @@
-alter table funcionarios add time varchar(20) not null;

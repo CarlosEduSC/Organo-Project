@@ -1,5 +1,5 @@
 export interface IColaborador {
-    id: bigint
+    id: bigint | string
     nome: string
     cargo: string
     telefone: string

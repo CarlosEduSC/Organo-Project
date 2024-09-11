@@ -1,34 +1,33 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
-import { ITime } from "../../shared/interfaces/ITime";
-import { buscarTimePeloNome } from "../../shared/methods/Time/BuscarTimePeloNome";
+import { ITime } from "../../shared/interfaces/IEquipe";
 import Time from "../../components/Time";
-import Banner from "../../components/Banner";
+import { buscarTime } from "../../shared/methods/Equipe/BuscarEquipe";
 
 const MostrarTime = () => {
   const [time, setTime] = useState<ITime>()
-  const {nomeTime} = useParams()
+  const {idTime} = useParams()
+  
+  const id: bigint = idTime && !isNaN(Number(idTime)) ? BigInt(idTime) : BigInt(0);
 
   useEffect(() => {
     const fetchTime = async () => {
-      const time = await buscarTimePeloNome(nomeTime ?? "");
+      const time = await buscarTime(id);
       setTime(time);
     };
 
     fetchTime();
-  }, [nomeTime]);
-
-  console.log(nomeTime)
+  }, [id]);
 
   return (
     <div>
       {time ? (
         <Time
           key={time.id}
-          nome={time.nome}
-          corPrimaria={time.corPrimaria}
-          corSecundaria={time.corSecundaria}
+          time={time}
           link={false}
+          adicionarColaborador={true}
+          editar={true}
         />
       ) : (
         <p>Carregando time...</p>

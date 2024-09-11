@@ -1,1 +1,0 @@
-alter table funcionarios add link_foto varchar(100);

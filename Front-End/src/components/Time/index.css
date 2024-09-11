@@ -5,7 +5,7 @@
 }
 
 .time:hover {
-    .add-colaborador {
+    .edit-time, .add-colaborador {
         visibility: visible;
     }
 }
@@ -38,7 +38,8 @@
     flex-wrap: wrap;
 }
 
-.time .add-colaborador {
+.time .edit-time,
+.add-colaborador {
     position: absolute;
     width: 40px;
     height: 40px;

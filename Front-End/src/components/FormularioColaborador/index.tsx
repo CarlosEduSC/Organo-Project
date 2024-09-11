@@ -34,7 +34,7 @@ const FormularioColaborador = ({ idColaborador }: FormularioColaboradorProps) =>
 
         const colaborador = await buscarColaborador(idColaborador);
         if (colaborador) {
-          setId(colaborador.id)
+          setId(BigInt(colaborador.id))
           setNome(colaborador.nome)
           setCargo(colaborador.cargo)
           setTelefone(colaborador.telefone)
@@ -71,7 +71,7 @@ const FormularioColaborador = ({ idColaborador }: FormularioColaboradorProps) =>
     event.preventDefault()
 
     const colaborador: IColaborador = {
-      id:id,
+      id:id.toString(),
       nome,
       cargo,
       telefone,

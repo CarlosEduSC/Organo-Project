@@ -3,10 +3,20 @@ import './index.css'
 import { IColaborador } from '../../shared/interfaces/IColaborador';
 import Colaborador from '../../components/Colaborador';
 import { buscarTodosColaboradoresAtivos } from '../../shared/methods/Colaborador/BuscarTodosColaboradoresAtivos';
+import { useParams } from 'react-router-dom';
 
-const MostrarColaboradores = () => {
+interface MostrarColaboradoresProps {
+  adicionar?: boolean
+  excluirEditar?: boolean
+}
+
+const MostrarColaboradores = ({adicionar, excluirEditar, }: MostrarColaboradoresProps) => {
   const [colaboradores, setColaboradores] = useState<IColaborador[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+
+  const {idTime} = useParams()
+
+  const id = BigInt(idTime ?? 0)
 
   useEffect(() => {
     const fetchColaboradores = async () => {
@@ -36,7 +46,9 @@ const MostrarColaboradores = () => {
             <Colaborador
               key={colaborador.nome}
               colaborador={colaborador}
-              mostrarExcluirEditar={true}
+              mostrarExcluirEditar={excluirEditar}
+              mostrarAdicionar={adicionar}
+              idTime={id}
             />
           ))}
         </div>

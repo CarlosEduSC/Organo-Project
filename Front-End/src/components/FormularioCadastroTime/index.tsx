@@ -6,8 +6,8 @@ import SeletorCor from "../SeletorCor";
 import { useNavigate } from "react-router-dom";
 import Time from "../Time";
 import { IColaborador } from "../../shared/interfaces/IColaborador";
-import { ITime } from "../../shared/interfaces/ITime";
-import { cadastrarTime } from "../../shared/methods/Time/CadastrarTime";
+import { ITime } from "../../shared/interfaces/IEquipe";
+import { cadastrarTime } from "../../shared/methods/Equipe/CadastrarEquipe";
 
 const FormularioCadastroTime = () => {
   const [nome, setNome] = useState("");

@@ -1,0 +1,1 @@
+alter table colaboradores add link_foto varchar(100);

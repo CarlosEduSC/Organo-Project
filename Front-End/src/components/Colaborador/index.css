@@ -25,7 +25,8 @@
     cursor: pointer;
 }
 
-.colaborador .excluir {
+.colaborador .excluir,
+.adicionar {
     width: 30px;
     position: absolute;
     top: 10px;
@@ -43,9 +44,13 @@
     visibility: hidden;
 }
 
-.colaborador:hover .excluir,
-.colaborador:hover .editar {
-    visibility: visible;
+.colaborador:hover {
+
+    .excluir,
+    .editar,
+    .adicionar {
+        visibility: visible;
+    }
 }
 
 .colaborador .rodape {

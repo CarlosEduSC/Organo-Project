@@ -2,7 +2,7 @@ import { IColaborador } from "../../interfaces/IColaborador";
 import api from "../api";
 
 export const buscarTodosColaboradores = async (): Promise<IColaborador[]> => {
-    const response = await api.get<IColaborador[]>("/funcionario/listar-todos");
+    const response = await api.get<IColaborador[]>("/colaborador/listar-todos");
 
     try {
 
