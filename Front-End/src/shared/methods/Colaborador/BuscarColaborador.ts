@@ -1,7 +1,7 @@
 import { IColaborador } from "../../interfaces/IColaborador";
 import api from "../api";
 
-export const buscarColaborador = async (id: bigint): Promise<IColaborador> => {
+export const buscarColaborador = async (id: string): Promise<IColaborador> => {
 
     const response = await api.get("/colaborador/buscar/" + id);
 

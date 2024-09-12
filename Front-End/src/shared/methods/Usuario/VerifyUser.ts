@@ -1,4 +1,3 @@
-import { IColaborador } from "../../interfaces/IColaborador";
 import api from "../api";
 
 export const verifyUser = async (): Promise<boolean> => {

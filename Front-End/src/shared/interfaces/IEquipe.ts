@@ -1,5 +1,5 @@
 export interface IEquipe {
-    id?: bigint
+    id?: string
     nome: string
     corPrimaria: string
     corSecundaria: string

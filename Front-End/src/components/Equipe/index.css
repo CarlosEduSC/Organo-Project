@@ -1,16 +1,16 @@
-.time {
+.equipe {
     text-align: center;
     padding: 32px;
     background-image: url(../../../images/fundo.png);
 }
 
-.time:hover {
-    .edit-time, .add-colaborador {
+.equipe:hover {
+    .edit-equipe, .add-colaborador {
         visibility: visible;
     }
 }
 
-.time h3 {
+.equipe h3 {
     font-family: 'Prata';
     font-style: normal;
     font-weight: 400;
@@ -21,7 +21,7 @@
     position: relative;
 }
 
-.time .bottomBar {
+.equipe .bottomBar {
     content: '';
     position: absolute;
     left: 50%;
@@ -31,14 +31,14 @@
     transform: translateX(-50%);
 }
 
-.time .colaboradores {
+.equipe .colaboradores {
     display: flex;
     justify-content: space-around;
     margin-top: 32px;
     flex-wrap: wrap;
 }
 
-.time .edit-time,
+.equipe .edit-equipe,
 .add-colaborador {
     position: absolute;
     width: 40px;

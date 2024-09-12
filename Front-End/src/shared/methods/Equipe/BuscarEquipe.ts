@@ -1,7 +1,7 @@
 import { IEquipe } from "../../interfaces/IEquipe";
 import api from "../api";
 
-export const buscarEquipe = async (idEquipe: bigint): Promise<IEquipe> => {
+export const buscarEquipe = async (idEquipe: string): Promise<IEquipe> => {
 
     const response = await api.get<IEquipe>("/equipe/buscar/" + idEquipe);
     

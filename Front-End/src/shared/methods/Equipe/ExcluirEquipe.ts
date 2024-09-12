@@ -1,7 +1,7 @@
 import { IEquipe } from "../../interfaces/IEquipe";
 import api from "../api";
 
-export const excluirEquipe = async (idEquipe: bigint) => {
+export const excluirEquipe = async (idEquipe: string) => {
     try {
         const response = await api.delete<IEquipe>("/equipe/excluir/" + idEquipe);
 

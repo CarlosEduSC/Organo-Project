@@ -1,22 +1,22 @@
 import './index.css'
 import Banner from '../../components/Banner'
 import { useEffect, useState } from 'react';
-import { ITime } from '../../shared/interfaces/IEquipe';
+import { IEquipe } from '../../shared/interfaces/IEquipe';
 import { IColaborador } from '../../shared/interfaces/IColaborador';
-import { buscarTimes } from '../../shared/methods/Equipe/BuscarTodasEquipes';
-import Time from '../../components/Time';
+import Equipe from '../../components/Equipe';
 import { buscarTodosColaboradoresAtivos } from '../../shared/methods/Colaborador/BuscarTodosColaboradoresAtivos';
+import { buscarTodasEquipesAtivas } from '../../shared/methods/Equipe/BuscarTodasEquipesAtivas';
 
 const PaginaInicial = () => {
-  const [times, setTimes] = useState<ITime[]>([]);
+  const [equipes, setEquipes] = useState<IEquipe[]>([]);
 
   useEffect(() => {
-    const fetchTimes = async () => {
-      const times = await buscarTimes();
-      setTimes(times);
+    const fetchEquipes = async () => {
+      const equipes = await buscarTodasEquipesAtivas();
+      setEquipes(equipes);
     };
 
-    fetchTimes();
+    fetchEquipes();
   }, []);
 
   return (
@@ -24,9 +24,9 @@ const PaginaInicial = () => {
 
       <Banner src='/images/banner.png' alt='Banner da pagina inicial.' />
 
-      {times.map(time => <Time
-        key={time.id}
-        time={time}
+      {equipes.map(equipe => <Equipe
+        key={equipe.id}
+        equipe={equipe}
         mostrarRemoverColaborador={false}
       />)}
     </section>

@@ -3,17 +3,19 @@ import { excluirColaborador } from '../../shared/methods/Colaborador/ExcluirCola
 import './index.css'
 import { IColaborador } from '../../shared/interfaces/IColaborador'
 import { useEffect, useState } from 'react'
-import { adicionarColaboradorAoTime } from '../../shared/methods/ColaboradorEquipe/AdicionarColaboradorAEquipe'
+import { adicionarColaboradorAEquipe } from '../../shared/methods/ColaboradorEquipe/AdicionarColaboradorAEquipe'
+import { removerColaboradorDaEquipe } from '../../shared/methods/ColaboradorEquipe/RemoverColaboradorDaEquipe'
 
 interface ColaboradorProps {
   colaborador: IColaborador
   corPrimaria?: string
   mostrarExcluirEditar?: boolean
   mostrarAdicionar?: boolean
-  idTime?: bigint
+  mostrarRemoverDaEquipe?: boolean
+  idEquipe?: string
 }
 
-const Colaborador = ({ colaborador, corPrimaria = "#6278f7", mostrarExcluirEditar = false, mostrarAdicionar = false, idTime = BigInt(0) }: ColaboradorProps) => {
+const Colaborador = ({ colaborador, corPrimaria = "#6278f7", mostrarExcluirEditar = false, mostrarAdicionar = false, mostrarRemoverDaEquipe = false, idEquipe = "" }: ColaboradorProps) => {
 
   const navigate = useNavigate()
 
@@ -21,14 +23,14 @@ const Colaborador = ({ colaborador, corPrimaria = "#6278f7", mostrarExcluirEdita
 
   useEffect(() => {
     const handleColaborador = async () => {
-      const colaboradorTime: IColaboradorTime = {
-        idColaborador: colaborador.id.toString(),
-        idTime: idTime.toString()
+      const colaboradorEquipe: IColaboradorEquipe = {
+        idColaborador: colaborador.id ?? "",
+        idEquipe: idEquipe.toString()
       }
 
-      await adicionarColaboradorAoTime(colaboradorTime);
+      await adicionarColaboradorAEquipe(colaboradorEquipe);
 
-      navigate("/mostrarTime/" + idTime)
+      navigate("/equipe/" + idEquipe)
     };
 
     if (adicionar) {
@@ -37,7 +39,7 @@ const Colaborador = ({ colaborador, corPrimaria = "#6278f7", mostrarExcluirEdita
   }, [adicionar, navigate]);
 
   const handleClickExcluir = async () => {
-    await excluirColaborador(colaborador.id ?? BigInt(0))
+    await excluirColaborador(colaborador.id ?? "")
   }
 
   const handleClickEditar = async () => {
@@ -45,11 +47,19 @@ const Colaborador = ({ colaborador, corPrimaria = "#6278f7", mostrarExcluirEdita
   }
 
   const handleClickPerfil = async () => {
-    navigate("/perfilColaborador/" + colaborador.id)
+    navigate("/colaborador/" + colaborador.id)
   }
 
   const handleClickAdd = async () => {
     setAdicionar(true)
+  }
+
+  const handleClickRemover = async () => {
+    if (idEquipe) {
+      const colaboradorEquipe: IColaboradorEquipe = { idColaborador: colaborador.id ?? "", idEquipe: idEquipe }
+
+      await removerColaboradorDaEquipe(colaboradorEquipe)
+    }
   }
 
   return (
@@ -77,8 +87,17 @@ const Colaborador = ({ colaborador, corPrimaria = "#6278f7", mostrarExcluirEdita
           <img
             className='adicionar'
             src='/images/add.png'
-            alt='Excluir colaborador'
+            alt='Adicionar colaborador a equipe'
             onClick={handleClickAdd}
+          />
+        }
+
+        {mostrarRemoverDaEquipe &&
+          <img
+            className='remover'
+            src='/images/remover.png'
+            alt='Remover o colaborador da equipe'
+            onClick={handleClickRemover}
           />
         }
 

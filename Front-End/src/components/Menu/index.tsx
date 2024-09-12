@@ -17,8 +17,8 @@ const Menu = () => {
     navigate("/")
   }
 
-  const CadastroTime = () => {
-    navigate("/cadastrarTime")
+  const CadastroEquipe = () => {
+    navigate("/cadastrarEquipe")
   }
 
   const menuClick = () => {
@@ -54,7 +54,7 @@ const Menu = () => {
           <div className="menu-options" aria-labelledby="dropdownMenuLink">
             <a className="menu-item" onClick={PaginaInicialClick}>Pagina Inicial</a>
             <a className="menu-item" onClick={CadastroColaboradorClick}>Cadastrar colaborador</a>
-            <a className='menu-item' onClick={CadastroTime}>Cadastrar time</a>
+            <a className='menu-item' onClick={CadastroEquipe}>Cadastrar equipe</a>
             <a className='menu-item' onClick={Colaboradores}>Colaboradores</a>
           </div>
         )}

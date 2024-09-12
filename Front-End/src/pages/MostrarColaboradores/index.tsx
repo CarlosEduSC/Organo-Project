@@ -14,9 +14,7 @@ const MostrarColaboradores = ({adicionar, excluirEditar, }: MostrarColaboradores
   const [colaboradores, setColaboradores] = useState<IColaborador[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
-  const {idTime} = useParams()
-
-  const id = BigInt(idTime ?? 0)
+  const {idEquipe} = useParams()
 
   useEffect(() => {
     const fetchColaboradores = async () => {
@@ -48,7 +46,7 @@ const MostrarColaboradores = ({adicionar, excluirEditar, }: MostrarColaboradores
               colaborador={colaborador}
               mostrarExcluirEditar={excluirEditar}
               mostrarAdicionar={adicionar}
-              idTime={id}
+              idEquipe={idEquipe}
             />
           ))}
         </div>

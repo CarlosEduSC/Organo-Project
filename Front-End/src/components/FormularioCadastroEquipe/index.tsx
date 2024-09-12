@@ -4,70 +4,69 @@ import CampoTexto from "../CampoTexto";
 import Botao from "../Botao";
 import SeletorCor from "../SeletorCor";
 import { useNavigate } from "react-router-dom";
-import Time from "../Time";
 import { IColaborador } from "../../shared/interfaces/IColaborador";
-import { ITime } from "../../shared/interfaces/IEquipe";
-import { cadastrarTime } from "../../shared/methods/Equipe/CadastrarEquipe";
+import { IEquipe } from "../../shared/interfaces/IEquipe";
+import { cadastrarEquipe } from "../../shared/methods/Equipe/CadastrarEquipe";
+import Equipe from "../Equipe";
 
-const FormularioCadastroTime = () => {
+const FormularioCadastroEquipe = () => {
   const [nome, setNome] = useState("");
   const [corPrimaria, setCorPrimaria] = useState("#6278f7");
   const [corSecundaria, setCorSecundaria] = useState("#F5F5F5");
-  const [time, setTime] = useState<ITime>()
+
+  const [equipe, setEquipe] = useState<IEquipe>({nome:"",corPrimaria:"",corSecundaria:""})
 
   const [submit, setSubmit] = useState(false)
 
   const navigate = useNavigate();
 
-  const setNomeTime = () => {
+  const setNomeEquipe = () => {
     if (nome == "") {
-      return "Nome do Time"
+      return "Nome da Equipe"
     
     } else {
       return nome
     }
   }
 
-  const colaboradores: IColaborador[] = [
-    {
+  const colaboradores: IColaborador[] = []
+
+  for (let i=1; i <= 4 ; i++) {
+    const colaborador: IColaborador = {
+      id: "0",
       nome: "Nome do funcionario",
       cargo: "Cargo do funcionario",
       telefone: "00 000000000",
       email: "exemplo@ex.com",
-      linkFoto: "https://www.wikiaves.com/img/semfoto.png",
-      time: "Exemplo Time"
-    },
-    {
-      nome: "Nome do funcionario",
-      cargo: "Cargo do funcionario",
-      telefone: "00 000000000",
-      email: "exemplo@ex.com",
-      linkFoto: "https://www.wikiaves.com/img/semfoto.png",
-      time: "Exemplo Time"
-    },
-    {
-      nome: "Nome do funcionario",
-      cargo: "Cargo do funcionario",
-      telefone: "00 000000000",
-      email: "exemplo@ex.com",
-      linkFoto: "https://www.wikiaves.com/img/semfoto.png",
-      time: "Exemplo Time"
-    },
-    {
-      nome: "Nome do funcionario",
-      cargo: "Cargo do funcionario",
-      telefone: "00 000000000",
-      email: "exemplo@ex.com",
-      linkFoto: "https://www.wikiaves.com/img/semfoto.png",
-      time: "Exemplo Time"
-    },
-  ]
+      linkFoto: "https://www.wikiaves.com/img/semfoto.png"
+    }
+
+    colaboradores.push(colaborador)
+  }
+
+  useEffect(() => {
+    const fetchEquipeChange = async () => {
+      if (equipe) {
+        const equipe: IEquipe = {
+          nome:setNomeEquipe(),
+          corPrimaria,
+          corSecundaria
+        }
+    
+        setEquipe(equipe)
+      }
+    };
+
+    
+    fetchEquipeChange();
+    
+  }, [equipe]);
 
 
   useEffect(() => {
     const fetchColaborador = async () => {
-      if (time) {
-        await cadastrarTime(time);
+      if (equipe) {
+        await cadastrarEquipe(equipe);
         navigate("/")
       }
     };
@@ -75,7 +74,7 @@ const FormularioCadastroTime = () => {
     if (submit) {
       fetchColaborador();
     }
-  }, [submit, time]);
+  }, [submit, equipe]);
 
   const handleCorPrincipalAlterada = (novaCor: string) => {
     setCorPrimaria(novaCor);
@@ -88,26 +87,26 @@ const FormularioCadastroTime = () => {
   const Submit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
-    const time: ITime = {
+    const equipe: IEquipe = {
       nome,
       corPrimaria,
       corSecundaria
     }
 
-    setTime(time)
+    setEquipe(equipe)
     setSubmit(true)
   }
 
   return (
-    <section className='formularioCadastroTime'>
+    <section className='formularioCadastroEquipe'>
       <form onSubmit={Submit}>
-        <h2>Preencha os dados para criar o novo time.</h2>
+        <h2>Preencha os dados para criar uma nova equipe.</h2>
 
         <CampoTexto
           onAlterado={value => setNome(value)}
           value={nome}
           required={true} label="Nome"
-          placeHolder="Digite o nome do time"
+          placeHolder="Digite o nome da equipe"
         />
 
         <div className="cores">
@@ -122,18 +121,16 @@ const FormularioCadastroTime = () => {
           />
         </div>
 
-        <Botao>Criar time</Botao>
+        <Botao>Criar equipe</Botao>
       </form>
 
-      <Time
-        nome={setNomeTime()}
-        corPrimaria={corPrimaria}
-        corSecundaria={corSecundaria}
+      <Equipe
+        equipe={equipe}
         link={false}
-        colaboradores={colaboradores}
+        colaboradoresPadrao={colaboradores}
       />
     </section>
   )
 }
 
-export default FormularioCadastroTime
+export default FormularioCadastroEquipe

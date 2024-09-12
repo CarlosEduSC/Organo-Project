@@ -1,6 +1,6 @@
 import api from "../api";
 
-export const excluirColaborador = async (id: bigint) => {
+export const excluirColaborador = async (id: string) => {
     try {
         const response = await api.delete("/colaborador/excluir/" + id);
 

@@ -4,11 +4,9 @@ import FormularioCadastroColaborador from "../../components/FormularioColaborado
 const EditarColaborador = () => {
   const {idColaborador} = useParams()
 
-  const id = BigInt(idColaborador ?? 0)
-
   return (
     <div>
-        <FormularioCadastroColaborador idColaborador={id}/>
+        <FormularioCadastroColaborador idColaborador={idColaborador}/>
     </div>
   )
 }

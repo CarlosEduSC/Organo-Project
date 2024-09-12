@@ -1,4 +1,4 @@
 interface IColaboradorEquipe {
-    idColaborador: bigint | string
-    idEquipe: bigint | string
+    idColaborador: string
+    idEquipe: string
 }

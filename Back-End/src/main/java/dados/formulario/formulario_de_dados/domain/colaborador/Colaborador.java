@@ -79,7 +79,9 @@ public class Colaborador {
             this.linkFoto = "https://www.wikiaves.com/img/semfoto.png";
         }
 
-        this.ativo = dados.ativo();
+        if (dados.ativo() != null) {
+            this.ativo = dados.ativo();
+        }
     }
 
     public void desativarColaborador() {

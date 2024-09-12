@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
-import { verifyUser } from './shared/methods/Usuario/VerifyUser';
 import useAuthentication from './shared/methods/useAuthentication';
 
 interface ProtectedRouteProps {

@@ -1,32 +1,29 @@
-.colaborador {
-    width: 280px;
-    margin-bottom: 30px;
+.detalhar-colaborador {
+    width: 40%;
+    margin: 50px auto;
     position: relative;
+    border: 1px solid black;
 }
 
-.colaborador .cabecalho {
-    height: 60px;
+.detalhar-colaborador .cabecalho {
+    height: 150px;
     border-radius: 10px 10px 0px 0px;
     position: relative;
     padding: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: #6278f7;
 }
 
-.colaborador .foto {
-    width: 100px;
+.detalhar-colaborador .foto {
+    width: 150px;
+    margin: auto;
     border-radius: 50%;
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     border: 2px solid #FFFFFF;
-    cursor: pointer;
 }
 
-.colaborador .excluir,
-.adicionar, .remover {
+.detalhar-colaborador .excluir {
     width: 30px;
     position: absolute;
     top: 10px;
@@ -35,7 +32,7 @@
     visibility: hidden;
 }
 
-.colaborador .editar {
+.detalhar-colaborador .editar {
     width: 35px;
     position: absolute;
     top: 10px;
@@ -44,38 +41,41 @@
     visibility: hidden;
 }
 
-.colaborador:hover {
+.detalhar-colaborador:hover {
 
     .excluir,
-    .editar,
-    .adicionar,
-    .remover {
+    .editar {
         visibility: visible;
     }
 }
 
-.colaborador .rodape {
+.detalhar-colaborador .rodape {
+    display: flex;
     background-color: #FFFFFF;
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.08);
     border-radius: 0px 0px 10px 10px;
     padding-top: 50px;
     padding-bottom: 1px;
+    padding: 30px;
+    position: relative;
+    flex-direction: column;
 }
 
-.colaborador .rodape h4 {
+.detalhar-colaborador .rodape h3 {
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 600;
-    font-size: 18px;
+    font-size: 26px;
     line-height: 22px;
-    cursor: pointer;
+    color: #6278f7;
+    margin: auto;
+    margin-bottom: 20px;
 }
 
-.colaborador .rodape h5 {
+.detalhar-colaborador .rodape p {
     font-family: 'Montserrat';
     font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 20px;
-    color: #212121;
+    font-size: 17px;
+    line-height: 22px;
+    margin: 15px 0px;
 }

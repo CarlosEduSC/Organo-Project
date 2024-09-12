@@ -1,7 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import './index.css'
 import Menu from '../Menu'
-import { useState } from 'react'
 import useAuthentication from '../../shared/methods/useAuthentication'
 
 const Painel = () => {
@@ -23,7 +22,7 @@ const Painel = () => {
         onClick={onClickLogo} 
       />
 
-      <h2 className='slogan'>Pessoas e times organizados em um só lugar!</h2>
+      <h2 className='slogan'>Pessoas e equipes organizados em um só lugar!</h2>
 
       {isAuthenticated && (<Menu/>)}
     </section>

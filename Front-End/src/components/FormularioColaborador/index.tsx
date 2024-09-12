@@ -4,16 +4,21 @@ import Botao from '../Botao'
 import { useEffect, useState } from 'react'
 import { IColaborador } from '../../shared/interfaces/IColaborador'
 import { cadastrarColaborador } from '../../shared/methods/Colaborador/CadastrarColaborador'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { editarColaborador } from '../../shared/methods/Colaborador/EditarColaborador'
 import { buscarColaborador } from '../../shared/methods/Colaborador/BuscarColaborador'
 
 interface FormularioColaboradorProps {
-  idColaborador?: bigint
+  idColaborador?: string
+  mostrarColaborador?: boolean
 }
 
-const FormularioColaborador = ({ idColaborador }: FormularioColaboradorProps) => {
-  const [id, setId] = useState(BigInt(0))
+const useQuery = () => {
+  return new URLSearchParams(useLocation().search);
+};
+
+const FormularioColaborador = ({ idColaborador, mostrarColaborador = false }: FormularioColaboradorProps) => {
+  const [id, setId] = useState("")
   const [nome, setNome] = useState("");
   const [cargo, setCargo] = useState("");
   const [telefone, setTelefone] = useState("");
@@ -25,6 +30,9 @@ const FormularioColaborador = ({ idColaborador }: FormularioColaboradorProps) =>
 
   const navigate = useNavigate();
 
+  const query = useQuery();
+  const detalhar = query.get('detalhar');
+
   const [editar, setEditar] = useState(false)
 
   useEffect(() => {
@@ -34,7 +42,7 @@ const FormularioColaborador = ({ idColaborador }: FormularioColaboradorProps) =>
 
         const colaborador = await buscarColaborador(idColaborador);
         if (colaborador) {
-          setId(BigInt(colaborador.id))
+          setId(colaborador.id ?? "")
           setNome(colaborador.nome)
           setCargo(colaborador.cargo)
           setTelefone(colaborador.telefone)
@@ -53,12 +61,17 @@ const FormularioColaborador = ({ idColaborador }: FormularioColaboradorProps) =>
       if (colaborador) {
         if (editar) {
           await editarColaborador(colaborador);
-        
+
         } else {
           await cadastrarColaborador(colaborador);
         }
-        
-        navigate("/colaboradores")
+
+        if (detalhar == "true") {
+          navigate("/colaborador/" + colaborador.id)
+
+        } else {
+          navigate("/colaboradores")
+        }
       }
     };
 
@@ -71,13 +84,13 @@ const FormularioColaborador = ({ idColaborador }: FormularioColaboradorProps) =>
     event.preventDefault()
 
     const colaborador: IColaborador = {
-      id:id.toString(),
+      id: id != "" ? id : undefined,
       nome,
       cargo,
       telefone,
       email,
       linkFoto,
-      ativo:true
+      ativo: true
     }
 
     if (colaborador.linkFoto == null || colaborador.linkFoto == "" || colaborador.linkFoto == undefined) {
@@ -132,7 +145,7 @@ const FormularioColaborador = ({ idColaborador }: FormularioColaboradorProps) =>
           placeHolder="Informe o endereço da foto do colaborador"
         />
 
-        <Botao>{idColaborador == null ? "Cadastrar Colaborador": "Editar Colaborador"}</Botao>
+        <Botao>{idColaborador == null ? "Cadastrar Colaborador" : "Editar Colaborador"}</Botao>
       </form>
     </section>
   )

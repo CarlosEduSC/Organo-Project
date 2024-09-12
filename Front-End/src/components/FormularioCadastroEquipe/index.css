@@ -1,10 +1,10 @@
-.formularioCadastroTime {
+.formularioCadastroEquipe {
     display: block;
     justify-content: center;
     margin: 80px 0px 0px 0px;
 }
 
-.formularioCadastroTime form {
+.formularioCadastroEquipe form {
     max-width: 80%;
     background-color: #F2F2F2;
     border-radius: 20px;
@@ -15,7 +15,7 @@
     width: 700px;
 }
 
-.formularioCadastroTime h2 {
+.formularioCadastroEquipe h2 {
     font-family: 'Prata';
     font-style: normal;
     font-weight: 400;
@@ -23,7 +23,7 @@
     line-height: 43px;
 }
 
-.formularioCadastroTime .cores {
+.formularioCadastroEquipe .cores {
     display: flex;
     align-items: center;
     justify-content: space-around;

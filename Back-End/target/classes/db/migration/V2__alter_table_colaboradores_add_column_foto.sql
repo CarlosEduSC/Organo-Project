@@ -1,1 +1,1 @@
-alter table colaboradores add link_foto varchar(100);
+alter table colaboradores add link_foto varchar(500);

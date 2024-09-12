@@ -10,5 +10,5 @@ public record DadosAtualizarColaborador(
     String email,
     String telefone,
     String linkFoto,
-    boolean ativo
+    Boolean ativo
 ) {}

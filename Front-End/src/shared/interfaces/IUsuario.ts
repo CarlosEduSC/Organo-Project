@@ -1,5 +1,5 @@
 export interface IUsuario{
-    id?: BigInt
+    id?: string
     email: String
     senha: String
     ativo?: String
