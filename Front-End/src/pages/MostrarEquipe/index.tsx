@@ -27,6 +27,7 @@ const MostrarEquipe = () => {
           adicionarColaboradores={true}
           removerColaborador={true}
           editar={true}
+          excluir={true}
         />
       ) : (
         <p>Carregando equipe...</p>

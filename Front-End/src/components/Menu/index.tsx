@@ -1,13 +1,14 @@
 import { useEffect, useRef, useState } from 'react'
 import './index.css'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 const Menu = () => {
   const [isActive, setIsActive] = useState(false)
   const menuRef = useRef<HTMLDivElement>(null)
+
   const navigate = useNavigate()
 
-
+  const location = useLocation();
 
   const CadastroColaboradorClick = () => {
     navigate('/cadastrarColaborador')
@@ -25,6 +26,13 @@ const Menu = () => {
     setIsActive(!isActive)
   }
 
+  const cadastrarClick = () => {
+    navigate("/cadastro")
+  }
+
+  const loginClick = () => {
+    navigate("/login")
+  }
 
   const Colaboradores = () => {
     navigate("/colaboradores")
@@ -48,16 +56,24 @@ const Menu = () => {
   return (
     <>
       <div className="menu" ref={menuRef}>
-        <img className='menu-image' src='https://cdn.icon-icons.com/icons2/930/PNG/512/menu_icon-icons.com_72311.png' alt='Menu' onClick={menuClick}/>
+        {location.pathname != "/login" && location.pathname != "/cadastro" ?
+          <>
+            <img className='menu-image' src='https://cdn.icon-icons.com/icons2/930/PNG/512/menu_icon-icons.com_72311.png' alt='Menu' onClick={menuClick} />
 
-        {isActive && (
-          <div className="menu-options" aria-labelledby="dropdownMenuLink">
-            <a className="menu-item" onClick={PaginaInicialClick}>Pagina Inicial</a>
-            <a className="menu-item" onClick={CadastroColaboradorClick}>Cadastrar colaborador</a>
-            <a className='menu-item' onClick={CadastroEquipe}>Cadastrar equipe</a>
-            <a className='menu-item' onClick={Colaboradores}>Colaboradores</a>
-          </div>
-        )}
+            {isActive && <div className="menu-options" aria-labelledby="dropdownMenuLink">
+              {location.pathname != "/" && location.pathname != "/login" && location.pathname != "/cadastro" ? <a className="menu-item" onClick={PaginaInicialClick}>Pagina Inicial</a> : <></>}
+              {location.pathname != "/cadastrarColaborador" && location.pathname != "/login" && location.pathname != "/cadastro" ? <a className="menu-item" onClick={CadastroColaboradorClick}>Cadastrar colaborador</a> : <></>}
+              {location.pathname != "/cadastrarEquipe" && location.pathname != "/login" && location.pathname != "/cadastro" ? <a className='menu-item' onClick={CadastroEquipe}>Cadastrar equipe</a> : <></>}
+              {location.pathname != "/colaboradores" && location.pathname != "/login" && location.pathname != "/cadastro" ? <a className='menu-item' onClick={Colaboradores}>Colaboradores</a> : <></>}
+            </div>}
+          </> :
+
+          <>
+            {location.pathname == "/login" ? <div className='cadastrar-login' onClick={cadastrarClick}>Cadastrar-se</div> 
+            
+            : <div className='cadastrar-login' onClick={loginClick}>Entrar</div>}
+          </>}
+
       </div>
     </>
   )

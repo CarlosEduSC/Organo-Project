@@ -38,3 +38,17 @@
 .menu-options .menu-item:hover {
     color: #6278f7;
 }
+
+.menu .cadastrar-login {
+    background-color: #FFFFFF;
+    padding: 10px;
+    border-radius: 12px;
+    cursor: pointer;
+    margin: 10px;
+    z-index: 1001;
+    text-align: center;
+}
+
+.menu .cadastrar-login:hover {
+    color: #6278f7;
+}

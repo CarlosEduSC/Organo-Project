@@ -6,21 +6,11 @@ import { useNavigate } from 'react-router-dom'
 
 interface EquipesColaboradorProps {
   idColaborador: string
+  equipes: IEquipe[]
 }
 
-const EquipesColaborador = ({ idColaborador }: EquipesColaboradorProps) => {
-  const [equipes, setEquipes] = useState<IEquipe[]>([])
-
+const EquipesColaborador = ({ idColaborador, equipes }: EquipesColaboradorProps) => {
   const navigate = useNavigate()
-
-  useEffect(() => {
-    const fetchEquipes = async () => {
-      const equipes = await buscarEquipesDeUmColaborador(idColaborador);
-      setEquipes(equipes);
-    };
-
-    fetchEquipes();
-  }, [equipes, idColaborador]);
 
   const handleEquipeClick = (idTime: string) => {
     navigate("/equipe/" + idTime)

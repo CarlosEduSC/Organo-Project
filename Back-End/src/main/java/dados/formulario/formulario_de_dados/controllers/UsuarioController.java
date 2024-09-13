@@ -6,11 +6,13 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import dados.formulario.formulario_de_dados.domain.usuario.DadosAtualizarUsuario;
 import dados.formulario.formulario_de_dados.domain.usuario.DadosAutenticacao;
 import dados.formulario.formulario_de_dados.domain.usuario.DadosDetalharUsuario;
 import dados.formulario.formulario_de_dados.domain.usuario.Usuario;
@@ -46,6 +48,19 @@ public class UsuarioController {
 
     @SuppressWarnings("rawtypes")
     @Transactional
+    @PutMapping("/editar")
+    public ResponseEntity editarUsuario(@Valid @RequestBody DadosAtualizarUsuario dados) {
+        Usuario usuario;
+
+        usuario = repository.getReferenceById(dados.id());
+
+        usuario.atualizarUsuario(dados);
+
+        return ResponseEntity.ok(new DadosDetalharUsuario(usuario));
+    }
+
+    @SuppressWarnings("rawtypes")
+    @Transactional
     @DeleteMapping("/excluir/{id}")
     public ResponseEntity deletarUsuario(@PathVariable Long id) {
         var usuario = repository.getReferenceById(id);
@@ -53,6 +68,14 @@ public class UsuarioController {
         usuario.desativarUsuario();
 
         return ResponseEntity.noContent().build();
+    }
+
+    @SuppressWarnings("rawtypes")
+    @GetMapping("/buscar/{id}")
+    public ResponseEntity buscarUsuario(@PathVariable Long id) {
+        var usuario = repository.getReferenceById(id);
+
+        return ResponseEntity.ok(new DadosDetalharUsuario(usuario));
     }
 
     @SuppressWarnings({ "rawtypes", "unused" })

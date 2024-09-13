@@ -5,7 +5,7 @@
 }
 
 .equipe:hover {
-    .edit-equipe, .add-colaborador {
+    .edit-equipe, .add-colaborador, .excluir {
         visibility: visible;
     }
 }
@@ -38,8 +38,7 @@
     flex-wrap: wrap;
 }
 
-.equipe .edit-equipe,
-.add-colaborador {
+.equipe .edit-equipe {
     position: absolute;
     width: 40px;
     height: 40px;
@@ -48,4 +47,28 @@
     border-radius: 100%;
     visibility: hidden;
     cursor: pointer;
+}
+
+.equipe .add-colaborador {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    left: 1790px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    border-radius: 100%;
+    visibility: hidden;
+    cursor: pointer;
+}
+
+.equipe .excluir {
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    left: 1795px;
+    top: 700px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    border-radius: 100%;
+    visibility: hidden;
+    cursor: pointer;
+    padding: 2px;
 }

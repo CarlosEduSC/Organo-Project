@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import './index.css'
 import Menu from '../Menu'
 import useAuthentication from '../../shared/methods/useAuthentication'
@@ -8,7 +8,10 @@ const Painel = () => {
 
   const isAuthenticated = useAuthentication();
 
-  
+  const location = useLocation()
+
+  console.log("location: " + location.hash)
+
   const onClickLogo = () => {
     navigate('/')
   }
@@ -19,12 +22,12 @@ const Painel = () => {
         className='logoPainel'
         src='/images/logo-branco.png'
         alt='Logo'
-        onClick={onClickLogo} 
+        onClick={onClickLogo}
       />
 
       <h2 className='slogan'>Pessoas e equipes organizados em um só lugar!</h2>
 
-      {isAuthenticated && (<Menu/>)}
+      <Menu />
     </section>
   )
 }

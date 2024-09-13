@@ -3,39 +3,39 @@ version: '3.8'
 services:
   mysqlFD:
     image: mysql:5.7
-    container_name: formulario-dados-mysql
+    container_name: organo-project-mysql
     ports:
       - 3307:3306
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: formulario_dados
+      MYSQL_DATABASE: organo_project
     networks:
-      - formulario_dados_rede
+      - organo_project_rede
 
   front-end:
-    image: carlosedusc/formulario_dados_front:latest
-    container_name: formulario-dados-front-end
+    image: carlosedusc/organo_project_front:1.0
+    container_name: organo-project-front-end
     ports:
       - 5173:5173
     networks:
-      - formulario_dados_rede
+      - organo_project_rede
     depends_on:
       - back-end
 
   back-end:
-    image: carlosedusc/formulario_dados_back
-    container_name: formulario-dados-back-end
+    image: carlosedusc/organo_project_back:1.0
+    container_name: organo-project-back-end
     ports:
       - 8080:8080
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysqlFD:3306/formulario_dados
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysqlFD:3306/organo_project
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
     networks: 
-     - formulario_dados_rede
+     - organo_project_rede
     depends_on:
       - mysqlFD
 
 networks:
-  formulario_dados_rede:
+  organo_project_rede:
     driver: bridge

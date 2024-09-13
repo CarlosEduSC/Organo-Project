@@ -57,8 +57,6 @@ public class Equipe {
 
         if (dados.corPrimaria() != null && isValidHexColor(dados.corPrimaria()) == true) {
             this.corPrimaria = dados.corPrimaria();
-
-            System.out.println("asdasdasddasdsaasd");
         
         } else {
             this.corPrimaria = "#D9D9D9";

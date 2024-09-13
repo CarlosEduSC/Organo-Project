@@ -4,13 +4,13 @@ import Footer from '../../components/Footer'
 
 const PaginaBase = () => {
   return (
-    <>
+    <div className='pagina-base'>
         <Painel/>
 
         <Outlet/>
 
         <Footer/>
-    </>
+    </div>
   )
 }
 

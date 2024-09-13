@@ -1,6 +1,6 @@
 export interface IUsuario{
     id?: string
-    email: String
-    senha: String
-    ativo?: String
+    email: string
+    senha: string
+    ativo?: boolean
 }

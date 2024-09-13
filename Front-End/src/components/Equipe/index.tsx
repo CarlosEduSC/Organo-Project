@@ -7,6 +7,8 @@ import { IEquipe } from '../../shared/interfaces/IEquipe'
 import { buscarTodosColaboradoresAtivos } from '../../shared/methods/Colaborador/BuscarTodosColaboradoresAtivos'
 import { buscarColaboradoresDaEquipe } from '../../shared/methods/ColaboradorEquipe/BuscarColaboradoresDaEquipe'
 import { buscarColaborador } from '../../shared/methods/Colaborador/BuscarColaborador'
+import { excluirEquipe } from '../../shared/methods/Equipe/ExcluirEquipe'
+import { removerTodosOsColaboradoresDaEquipe } from '../../shared/methods/ColaboradorEquipe/RemoverTodosOsColaboradoresDaEquipe'
 
 interface EquipeProps {
   equipe: IEquipe
@@ -16,15 +18,18 @@ interface EquipeProps {
   adicionarColaboradores?: boolean
   removerColaborador?: boolean
   editar?: boolean
+  excluir?: boolean
 }
 
-const Equipe = ({ equipe, colaboradoresPadrao = [], link = true, mostrarRemoverColaborador = false, adicionarColaboradores = false, removerColaborador = false, editar = false }: EquipeProps) => {
+const Equipe = ({ equipe, colaboradoresPadrao = [], link = true, mostrarRemoverColaborador = false, adicionarColaboradores = false, removerColaborador = false, editar = false, excluir = false }: EquipeProps) => {
 
   const [colaboradores, setColaboradores] = useState<IColaborador[]>([]);
 
   const navigate = useNavigate()
 
-  const [hovered, setHovered] = useState(false);
+  const [hoveredAddEdit, setHoveredAddEdit] = useState(false);
+
+  const [hoveredExcluir, setHoveredExcluir] = useState(false);
 
   const handleEditClick = () => {
     navigate("/equipe/" + equipe.id)
@@ -32,6 +37,14 @@ const Equipe = ({ equipe, colaboradoresPadrao = [], link = true, mostrarRemoverC
 
   const handleAddClick = () => {
     navigate("/adicionarColaborador/" + equipe.id)
+  }
+
+  const handleExcluirClick = async () => {
+    await removerTodosOsColaboradoresDaEquipe(equipe.id ?? "")
+
+    await excluirEquipe(equipe.id ?? "")
+
+    navigate("/")
   }
 
   useEffect(() => {
@@ -44,30 +57,39 @@ const Equipe = ({ equipe, colaboradoresPadrao = [], link = true, mostrarRemoverC
       fetchColaboradores();
     }
 
-  }, [colaboradores,equipe]);
+  }, [colaboradores, equipe]);
 
   return (
-    <section className='equipe' style={{ backgroundColor: equipe.corSecundaria, height: editar ? "604px" : ""}}>
+    <section className='equipe' style={{ backgroundColor: equipe.corSecundaria, height: editar ? "604px" : "" }}>
       {link ? <img
         className='edit-equipe'
         src='/images/edit.png'
-        onMouseEnter={() => setHovered(true)}
-        onMouseLeave={() => setHovered(false)}
-        style={{ backgroundColor: hovered ? equipe.corPrimaria : '' }}
+        onMouseEnter={() => setHoveredAddEdit(true)}
+        onMouseLeave={() => setHoveredAddEdit(false)}
+        style={{ backgroundColor: hoveredAddEdit ? equipe.corPrimaria : '' }}
         onClick={handleEditClick}
       /> : <></>}
 
       {adicionarColaboradores ? <img
         className='add-colaborador'
         src='/images/add.png'
-        onMouseEnter={() => setHovered(true)}
-        onMouseLeave={() => setHovered(false)}
+        onMouseEnter={() => setHoveredAddEdit(true)}
+        onMouseLeave={() => setHoveredAddEdit(false)}
         style={{
-          backgroundColor: hovered ? equipe.corPrimaria : '',
-          height: "30px",
-          width: "30px"
+          backgroundColor: hoveredAddEdit ? equipe.corPrimaria : ''
         }}
         onClick={handleAddClick}
+      /> : <></>}
+
+      {excluir ? <img
+        className='excluir'
+        src='/images/excluir.png'
+        onMouseEnter={() => setHoveredExcluir(true)}
+        onMouseLeave={() => setHoveredExcluir(false)}
+        style={{
+          backgroundColor: hoveredExcluir ? "#E10000" : "",
+        }}
+        onClick={handleExcluirClick}
       /> : <></>}
 
       <h3 style={{ color: equipe.corPrimaria, cursor: link ? "pointer" : "" }} onClick={handleEditClick}>

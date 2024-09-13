@@ -9,6 +9,8 @@ import EditarColaborador from "./pages/EditarColaborador"
 import CadastroEquipe from "./pages/CadastroEquipe"
 import MostrarEquipe from "./pages/MostrarEquipe"
 import MostrarColaborador from "./pages/MostrarColaborador"
+import CadastroUsuario from "./pages/CadastroUsuario"
+import EditarUsuario from "./pages/EditarUsuario"
 
 const AppRoutes = () => {
     return (
@@ -18,7 +20,11 @@ const AppRoutes = () => {
 
                     <Route path="/login" element={<Login/>}/>
 
+                    <Route path="/cadastro" element={<CadastroUsuario />}/>
+
                     <Route path="/" element={<ProtectedRoute element={<PaginaInicial />} />} />
+
+                    <Route path="/editarUsuario" element={<ProtectedRoute element={<EditarUsuario />} />} />
 
                     <Route path="/cadastrarColaborador" element={<ProtectedRoute element={<CadastroColaborador />} />} />
 

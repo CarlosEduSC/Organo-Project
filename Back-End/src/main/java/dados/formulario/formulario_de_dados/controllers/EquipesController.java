@@ -46,20 +46,6 @@ public class EquipesController {
     public ResponseEntity<List<Equipe>> listarEquipes() {
         var equipes = repository.findAllByAtivoTrue();
 
-        if (equipes.isEmpty()) {
-            equipes.add(new Equipe(new DadosCadastroEquipe("Programação", "#57C278", "#D9F7E9")));
-            equipes.add(new Equipe(new DadosCadastroEquipe("Front-End", "#82CFF1", "#E8F8FF")));
-            equipes.add(new Equipe(new DadosCadastroEquipe("Data Science", "#A6D157", "#F0F8E2")));
-            equipes.add(new Equipe(new DadosCadastroEquipe("Devops", "#E06B69", "#FDE7E8")));
-            equipes.add(new Equipe(new DadosCadastroEquipe("UX e Design", "#DB6EBF", "#FAE9F5")));
-            equipes.add(new Equipe(new DadosCadastroEquipe("Mobile", "#FFBA05", "#FFF5D9")));
-            equipes.add(new Equipe(new DadosCadastroEquipe("Inovação e Gestão", "#FF8A29", "#FFEEDF")));
-            
-            for (Equipe equipe : equipes) {
-                repository.save(equipe);
-            }
-        }
-
         return ResponseEntity.ok().body(equipes);
     }
 

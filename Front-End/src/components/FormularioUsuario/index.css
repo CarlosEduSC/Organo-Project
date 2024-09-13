@@ -1,10 +1,10 @@
-.formulario-login {
+.formularioUsuario {
     display: flex;
     justify-content: center;
     margin: 80px 0px;
 }
 
-.formulario-login form {
+.formularioUsuario form {
     max-width: 80%;
     width: 35%;
     background-color: #F2F2F2;
@@ -13,7 +13,7 @@
     box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.08);
 }
 
-.formulario-login h2 {
+.formularioUsuario h2 {
     font-family: 'Prata';
     font-style: normal;
     font-weight: 400;

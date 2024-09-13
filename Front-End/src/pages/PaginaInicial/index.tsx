@@ -24,11 +24,11 @@ const PaginaInicial = () => {
 
       <Banner src='/images/banner.png' alt='Banner da pagina inicial.' />
 
-      {equipes.map(equipe => <Equipe
+      {equipes.length != 0 ? equipes.map(equipe => <Equipe
         key={equipe.id}
         equipe={equipe}
         mostrarRemoverColaborador={false}
-      />)}
+      />) : <h1 className='mensagem'>Você ainda não possui equipes!</h1>}
     </section>
   )
 }

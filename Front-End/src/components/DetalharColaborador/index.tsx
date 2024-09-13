@@ -3,6 +3,10 @@ import { IColaborador } from '../../shared/interfaces/IColaborador'
 import './index.css'
 import { excluirColaborador } from '../../shared/methods/Colaborador/ExcluirColaborador'
 import EquipesColaborador from '../EquipesColaborador'
+import { useEffect, useState } from 'react'
+import { RemoverColaboradorDeTodasAsEquipes } from '../../shared/methods/ColaboradorEquipe/RemoverColaboradorDeTodasAsEquipes'
+import { IEquipe } from '../../shared/interfaces/IEquipe'
+import { buscarEquipesDeUmColaborador } from '../../shared/methods/ColaboradorEquipe/BuscarEquipesDeUmColaborador'
 
 interface DetalharColaboradorProps {
   colaborador: IColaborador
@@ -11,7 +15,23 @@ interface DetalharColaboradorProps {
 const DetalharColaborador = ({ colaborador }: DetalharColaboradorProps) => {
   const navigate = useNavigate()
 
+  const [hoveredExcluir, setHoveredExcluir] = useState(false)
+
+  const [hoveredEditar, setHoveredEditar] = useState(false)
+
+  const [equipes, setEquipes] = useState<IEquipe[]>([])
+
+  useEffect(() => {
+    const fetchEquipes = async () => {
+      const equipes = await buscarEquipesDeUmColaborador(colaborador.id ?? "");
+      setEquipes(equipes);
+    };
+
+    fetchEquipes();
+  }, [equipes, colaborador]);
+
   const handleClickExcluir = async () => {
+    await RemoverColaboradorDeTodasAsEquipes(colaborador.id ?? "")
     await excluirColaborador(colaborador.id ?? "")
     navigate("/colaboradores")
   }
@@ -20,12 +40,8 @@ const DetalharColaborador = ({ colaborador }: DetalharColaboradorProps) => {
     navigate("/editarColaborador/" + colaborador.id + "?detalhar=true")
   }
 
-  const handleClickEquipe = async () => {
-    navigate("/mostrarEquipe/" + colaborador.id)
-  }
-
   return (
-    <div className='detalhar-colaborador'>
+    <div className='detalhar-colaborador' style={{height:equipes.length == 0 ? "604px" : ""}}>
       <div className='cabecalho'>
 
         <img
@@ -33,6 +49,11 @@ const DetalharColaborador = ({ colaborador }: DetalharColaboradorProps) => {
           src='/images/excluir.png'
           alt='Excluir colaborador'
           onClick={handleClickExcluir}
+          onMouseEnter={() => setHoveredExcluir(true)}
+          onMouseLeave={() => setHoveredExcluir(false)}
+          style={{
+            backgroundColor: hoveredExcluir ? "#E10000" : "",
+          }}
         />
 
         <img
@@ -40,6 +61,11 @@ const DetalharColaborador = ({ colaborador }: DetalharColaboradorProps) => {
           src='/images/edit.png'
           alt='Editar colaborador'
           onClick={handleClickEditar}
+          onMouseEnter={() => setHoveredEditar(true)}
+          onMouseLeave={() => setHoveredEditar(false)}
+          style={{
+            backgroundColor: hoveredEditar ? "#E3E3E3" : "",
+          }}
         />
 
         <img className='foto' src={colaborador.linkFoto} alt={colaborador.nome} />
@@ -52,7 +78,7 @@ const DetalharColaborador = ({ colaborador }: DetalharColaboradorProps) => {
         <p><b>Telefone:</b> {colaborador.telefone}</p>
         <p><b>Email:</b> {colaborador.email}</p>
 
-        <EquipesColaborador idColaborador={colaborador.id ?? ""} />
+        <EquipesColaborador idColaborador={colaborador.id ?? ""} equipes={equipes} />
       </div>
     </div>
   )

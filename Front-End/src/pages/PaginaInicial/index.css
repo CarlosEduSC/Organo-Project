@@ -3,3 +3,11 @@
     display: block;
     justify-content: space-around;
 }
+
+.paginaInicial .mensagem {
+    font-size: 35px;
+    color: #6278f7;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}

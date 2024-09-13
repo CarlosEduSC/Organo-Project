@@ -25,10 +25,7 @@ const MostrarColaborador = () => {
 
   return (
     <div className="mostrar-colaborador">
-
       <DetalharColaborador colaborador={colaborador}/>
-
-      {/* <ListaSuspensa/> */}
     </div>
   )
 }

@@ -2,7 +2,6 @@
     width: 40%;
     margin: 50px auto;
     position: relative;
-    border: 1px solid black;
 }
 
 .detalhar-colaborador .cabecalho {
@@ -30,6 +29,8 @@
     right: 10px;
     cursor: pointer;
     visibility: hidden;
+    border-radius: 100%;
+    padding: 2px;
 }
 
 .detalhar-colaborador .editar {
@@ -39,6 +40,7 @@
     left: 10px;
     cursor: pointer;
     visibility: hidden;
+    border-radius: 100%;
 }
 
 .detalhar-colaborador:hover {

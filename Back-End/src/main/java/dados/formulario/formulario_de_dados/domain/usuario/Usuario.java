@@ -47,6 +47,20 @@ public class Usuario implements UserDetails{
         this.ativo = true;
     }
 
+    public void atualizarUsuario(@Valid DadosAtualizarUsuario dados) {
+        if (dados.email() != null) {
+            this.email = dados.email();
+        }
+
+        if (dados.senha() != null) {
+            this.senha = dados.senha();
+        }
+
+        if (dados.ativo() != null) {
+            this.ativo = dados.ativo();
+        }
+    }
+
     public void desativarUsuario() {
         this.ativo = false;
     }

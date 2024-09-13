@@ -12,6 +12,7 @@ const FormularioLogin = () => {
   const [senha, setSenha] = useState("");
 
   const [usuario, setUsuario] = useState<IUsuario>()
+
   const [submit, setSubmit] = useState(false)
 
   useEffect(() => {
@@ -43,7 +44,7 @@ const FormularioLogin = () => {
   }
 
   return (
-    <section className='formularioLogin'>
+    <section className='formulario-login'>
       <form onSubmit={Submit}>
 
         <CampoTexto

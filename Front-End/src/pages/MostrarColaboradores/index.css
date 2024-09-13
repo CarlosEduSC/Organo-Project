@@ -12,12 +12,20 @@
     flex-wrap: wrap;
 }
 
+.mostrar-colaboradores h1 {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 30px;
+    margin-bottom: 60px;
+    width: 100%;
+}
+
 .sem-colaboradores {
     text-align: center;
     padding: 32px;
     background-image: url(../../../images/fundo.png);
     background-color: #F5F5F5;
-    height: 604px;
 }
 
 .sem-colaboradores h1 {

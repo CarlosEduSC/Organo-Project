@@ -78,11 +78,41 @@ public class ColaboradorEquipeController {
 
     @SuppressWarnings("rawtypes")
     @Transactional
-    @DeleteMapping("/remover")
-    public ResponseEntity removerColaboradorDoEquipe(@RequestBody DadosColaboradorEquipe dados) {
+    @DeleteMapping("/remover-colaborador")
+    public ResponseEntity removerColaboradorDaEquipe(@RequestBody DadosColaboradorEquipe dados) {
         ColaboradorEquipeId colaboradorEquipeId = new ColaboradorEquipeId(dados.idColaborador(), dados.idEquipe());
 
         repository.deleteById(colaboradorEquipeId);
+
+        return ResponseEntity.noContent().build();
+    }
+
+    @SuppressWarnings("rawtypes")
+    @Transactional
+    @DeleteMapping("/remover-todos-colaboradores/{idEquipe}")
+    public ResponseEntity removerTodosOsColaboradoresDaEquipe(@PathVariable Long idEquipe) {
+        var colaboradoresEquipe = repository.findAllByIdEquipe(idEquipe);
+
+        for (ColaboradorEquipe colaboradorEquipe : colaboradoresEquipe) {
+            ColaboradorEquipeId colaboradorEquipeId = new ColaboradorEquipeId(colaboradorEquipe.getIdColaborador(), colaboradorEquipe.getIdEquipe());
+
+            repository.deleteById(colaboradorEquipeId);
+        }
+
+        return ResponseEntity.noContent().build();
+    }
+
+    @SuppressWarnings("rawtypes")
+    @Transactional
+    @DeleteMapping("/remover-colaborador-todas-equipes/{idColaborador}")
+    public ResponseEntity removerColaboradorDeTodasAsEquipes(@PathVariable Long idColaborador) {
+        var colaboradoresEquipe = repository.findAllByIdColaborador(idColaborador);
+
+        for (ColaboradorEquipe colaboradorEquipe : colaboradoresEquipe) {
+            ColaboradorEquipeId colaboradorEquipeId = new ColaboradorEquipeId(colaboradorEquipe.getIdColaborador(), colaboradorEquipe.getIdEquipe());
+
+            repository.deleteById(colaboradorEquipeId);
+        }
 
         return ResponseEntity.noContent().build();
     }

@@ -2,7 +2,7 @@ import FormularioLogin from "../../components/FormularioLogin"
 
 const Login = () => {
   return (
-    <div className="login">
+    <div>
         <FormularioLogin/>
     </div>
   )
