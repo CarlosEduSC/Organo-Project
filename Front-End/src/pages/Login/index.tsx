@@ -1,9 +1,10 @@
-import FormularioLogin from "../../components/FormularioLogin"
+import FormularioUsuario from "../../components/FormularioUsuario"
+
 
 const Login = () => {
   return (
     <div>
-        <FormularioLogin/>
+        <FormularioUsuario logar={true}/>
     </div>
   )
 }
