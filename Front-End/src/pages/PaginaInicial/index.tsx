@@ -27,7 +27,7 @@ const PaginaInicial = () => {
       {equipes.length != 0 ? equipes.map(equipe => <Equipe
         key={equipe.id}
         equipe={equipe}
-        mostrarRemoverColaborador={false}
+        link={true}
       />) : <h1 className='mensagem'>Você ainda não possui equipes!</h1>}
     </section>
   )

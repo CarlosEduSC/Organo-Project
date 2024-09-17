@@ -1,0 +1,46 @@
+.detalhar-usuario {
+    width: 300px;
+    margin: 50px auto;
+    position: relative;
+    background-color: #6278f7;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.detalhar-usuario .editar {
+    width: 35px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    visibility: hidden;
+    border-radius: 100%;
+}
+
+.detalhar-usuario:hover {
+    .editar {
+        visibility: visible;
+    }
+}
+
+.detalhar-usuario h3 {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 26px;
+    line-height: 22px;
+    color: #FFFFFF;
+    margin: auto;
+    margin-bottom: 20px;
+}
+
+.detalhar-usuario p {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    color: #FFFFFF;
+    margin: auto;
+}

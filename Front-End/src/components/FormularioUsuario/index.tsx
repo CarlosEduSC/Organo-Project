@@ -17,25 +17,28 @@ interface FormularioUsuarioProps {
 }
 
 const FormularioUsuario = ({ editar = false, cadastrar = false, logar = false, idUsuario = "" }: FormularioUsuarioProps) => {
+  if (logar || cadastrar) {
+    localStorage.setItem('token', "")
+  }
+
   const [id, setId] = useState("")
+  const [nome, setNome] = useState("")
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
-  const [confirmar, setConfirmar] = useState("");
+  const [confirmar, setConfirmar] = useState("")
 
   const [usuario, setUsuario] = useState<IUsuario>()
   const [submit, setSubmit] = useState(false)
-  const [edit, setEdit] = useState(false)
 
   const navigate = useNavigate()
 
   useEffect(() => {
-    if (idUsuario) {
+    if (idUsuario && editar) {
       const fetchUsuario = async () => {
-        setEdit(true)
-
         const usuario = await buscarUsuario(idUsuario);
         if (usuario) {
           setId(usuario.id ?? "")
+          setNome(usuario.nome)
           setEmail(usuario.email)
           setSenha(usuario.senha)
           setUsuario(usuario)
@@ -44,67 +47,81 @@ const FormularioUsuario = ({ editar = false, cadastrar = false, logar = false, i
 
       fetchUsuario();
     }
-  }, []);
+  }, [idUsuario, editar]);
 
   useEffect(() => {
-    const handleUsuario = async () => {
-      if (usuario) {
+    if (usuario && confirmar == senha) {
+      const handleUsuario = async () => {
         if (editar) {
           await editarUsuario(usuario);
+          navigate("/perfil")
 
-        } else {
+        } else if (cadastrar) {
           await cadastrarUsuario(usuario);
           navigate("/login")
         }
       }
-    };
 
-    if (submit) {
-      handleUsuario();
-    }
-  }, [submit, usuario, navigate]);
+      if (submit) {
+        handleUsuario();
+      }
+    };
+  }, [submit, usuario, confirmar, senha, editar, cadastrar]);
 
   useEffect(() => {
-    const fetchLogin = async () => {
-      if (usuario) {
+    if (usuario && logar) {
+      const fetchLogin = async () => {
         const token = await login(usuario);
 
         localStorage.setItem('token', token)
 
         navigate("/")
       }
+      
+      if (submit) {
+        fetchLogin();
+      }
     };
-
-    if (submit) {
-      fetchLogin();
-    }
-  }, [submit, usuario, navigate]);
+  }, [submit, usuario, navigate, logar]);
 
   const Submit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
-    const usuario: IUsuario = {
+    if (senha == usuario?.senha) {
+      setConfirmar(senha)
+    }
+
+    const usuarioEnviado: IUsuario = {
       id: id != "" ? id : undefined,
+      nome,
       email,
       senha,
       ativo: true
     }
 
-    setUsuario(usuario)
+    setUsuario(usuarioEnviado)
     setSubmit(true)
   }
 
   return (
-    <section className='formularioUsuario'>
-      <form onSubmit={Submit} style={{width: logar ? "35%" : ""}}>
+    <section className='formularioUsuario' style={{margin: cadastrar || editar ? "70px" : ""}}>
+      <form onSubmit={Submit} style={{ width: logar ? "35%" : "" }}>
         {cadastrar || editar ? <h2>{cadastrar ? "Preencha os dados para criar sua conta." : editar ? "Edite os dados conforme nescessario." : ""}</h2> : <></>}
+
+        {cadastrar || editar ? <CampoTexto
+          onAlterado={value => setNome(value)}
+          value={nome}
+          required={true}
+          label="Nome"
+          placeHolder="Digite seu nome"
+        /> : <></>}
 
         <CampoTexto
           onAlterado={value => setEmail(value)}
           value={email}
           required={true}
           label="Email"
-          placeHolder={cadastrar ? "Digite o email" : editar ? "Digite o novo email" : logar ?  "Digite seu email" : ""}
+          placeHolder={cadastrar ? "Digite o email" : editar ? "Digite o novo email" : logar ? "Digite seu email" : ""}
         />
 
         <CampoTexto
@@ -116,14 +133,14 @@ const FormularioUsuario = ({ editar = false, cadastrar = false, logar = false, i
           type="password"
         />
 
-        {cadastrar ? <CampoTexto
-          onAlterado={value => setSenha(value)}
-          value={senha}
+        {cadastrar || editar && senha != usuario?.senha ? <CampoTexto
+          onAlterado={value => setConfirmar(value)}
+          value={confirmar}
           required={true}
           label="Confirmar senha"
-          placeHolder="Digite a senha novamente"
+          placeHolder={cadastrar ? "Digite novamente a senha" : editar ? "Digite a novamente a nova senha" : ""}
           type="password"
-        /> : editar && senha != usuario?.senha}
+        /> : <></>}
 
         <Botao>{cadastrar ? "Cadastrar-se" : editar ? "Editar Usuario" : logar ? "Entrar" : ""}</Botao>
       </form>

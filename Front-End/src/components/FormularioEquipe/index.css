@@ -5,14 +5,13 @@
 }
 
 .formularioCadastroEquipe form {
-    max-width: 80%;
     background-color: #F2F2F2;
     border-radius: 20px;
     padding: 36px 64px;
     box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.08);
     margin: auto;
     margin-bottom: 50px;
-    width: 700px;
+    width: 800px;
 }
 
 .formularioCadastroEquipe h2 {
@@ -21,6 +20,7 @@
     font-weight: 400;
     font-size: 32px;
     line-height: 43px;
+    text-align: center;
 }
 
 .formularioCadastroEquipe .cores {

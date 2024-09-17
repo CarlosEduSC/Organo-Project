@@ -1,7 +1,5 @@
 import { useParams } from 'react-router-dom'
-import './index.css'
 import DetalharColaborador from '../../components/DetalharColaborador'
-import ListaSuspensa from '../../components/EquipesColaborador'
 import { useEffect, useState } from 'react'
 import { buscarColaborador } from '../../shared/methods/Colaborador/BuscarColaborador'
 import { IColaborador } from '../../shared/interfaces/IColaborador'
@@ -24,7 +22,7 @@ const MostrarColaborador = () => {
   }, [idColaborador]);
 
   return (
-    <div className="mostrar-colaborador">
+    <div style={{width:"100%"}}>
       <DetalharColaborador colaborador={colaborador}/>
     </div>
   )

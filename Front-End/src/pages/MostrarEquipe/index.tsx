@@ -18,7 +18,7 @@ const MostrarEquipe = () => {
   }, [idEquipe]);
 
   return (
-    <div>
+    <div style={{width:"100%"}}>
       {equipe ? (
         <Equipe
           key={equipe.id}

@@ -1,0 +1,14 @@
+.pagina-base {
+    min-width: 100%;
+}
+
+.pagina-base .conteudo {
+    min-height: 668px;
+    background-image: url(../../../images/fundo.png);
+    background-color: #F5F5F5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 0px 0px 0px;
+    width: 100%;
+}

@@ -2,7 +2,6 @@ import { IUsuario } from "../../interfaces/IUsuario";
 import api from "../api";
 
 export const cadastrarUsuario = async (usuario: IUsuario) => {
-
     try {
         const response = await api.post<IUsuario>("/usuario/cadastrar", usuario);
 

@@ -32,6 +32,7 @@ public class TokenService {
             return JWT.create()
                     .withIssuer("Projeto Organo")
                     .withSubject(usuario.getUsername())
+                    .withClaim("id", usuario.getId())
                     .withExpiresAt(expireDate())
                     .sign(algorithm);
 

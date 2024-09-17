@@ -1,9 +1,9 @@
-import FormularioCadastroEquipe from "../../components/FormularioCadastroEquipe"
+import FormularioCadastroEquipe from "../../components/FormularioEquipe"
 
 const CadastroEquipe = () => {
   return (
-    <div>
-      <FormularioCadastroEquipe/>
+    <div style={{width:"100%"}}>
+      <FormularioCadastroEquipe cadastro={true}/>
     </div>
   )
 }

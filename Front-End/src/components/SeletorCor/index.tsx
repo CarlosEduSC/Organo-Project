@@ -3,22 +3,32 @@ import { useState } from 'react';
 import { hexToHsva } from '@uiw/color-convert';
 import Colorful from '@uiw/react-color-colorful';
 import { ColorResult } from '@uiw/color-convert';
+import { IEquipe } from '../../shared/interfaces/IEquipe';
 
 interface SeletorCorProps {
   label: string;
+  equipe?: IEquipe
   onCorAlterada: (value: string) => void
 }
 
-const SeletorCor = ({ label, onCorAlterada }: SeletorCorProps) => {
+const SeletorCor = ({ label, onCorAlterada, equipe }: SeletorCorProps) => {
   const corInicial = () => {
     let cor = ""
-    
+
     if (label == "Cor Principal") {
-      cor = "#D9D9D9"
+      if (equipe != undefined) {
+        cor = equipe.corPrimaria
+      } else {
+        cor = "#D9D9D9"
+      }
     }
 
     if (label == "Cor Secundaria") {
-      cor = "#F5F5F5"
+      if (equipe != undefined) {
+        cor = equipe.corSecundaria
+      } else {
+        cor = "#F5F5F5"
+      }
     }
 
     return cor
@@ -44,7 +54,7 @@ const SeletorCor = ({ label, onCorAlterada }: SeletorCorProps) => {
 
       <Colorful
         style={{
-          width:"300px"
+          width: "300px"
         }}
         color={hsva}
         onChange={(color) => {

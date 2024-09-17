@@ -8,13 +8,22 @@ import { IColaborador } from "../../shared/interfaces/IColaborador";
 import { IEquipe } from "../../shared/interfaces/IEquipe";
 import { cadastrarEquipe } from "../../shared/methods/Equipe/CadastrarEquipe";
 import Equipe from "../Equipe";
+import { buscarEquipe } from "../../shared/methods/Equipe/BuscarEquipe";
 
-const FormularioCadastroEquipe = () => {
+interface FormularioEquipeProps {
+  cadastro?: boolean
+  editar?: boolean
+  idEquipe?: string
+}
+
+const FormularioEquipe = ({ cadastro = false, editar = false, idEquipe = "" }) => {
+  const [id, setId] = useState("")
   const [nome, setNome] = useState("");
   const [corPrimaria, setCorPrimaria] = useState("#6278f7");
-  const [corSecundaria, setCorSecundaria] = useState("#F5F5F5");
+  const [corSecundaria, setCorSecundaria] = useState("#d4e0ff");
 
-  const [equipe, setEquipe] = useState<IEquipe>({nome:"",corPrimaria:"",corSecundaria:""})
+  const [equipe, setEquipe] = useState<IEquipe>({ nome: "", corPrimaria: "", corSecundaria: "" })
+  const colaboradores: IColaborador[] = []
 
   const [submit, setSubmit] = useState(false)
 
@@ -22,44 +31,70 @@ const FormularioCadastroEquipe = () => {
 
   const setNomeEquipe = () => {
     if (nome == "") {
-      return "Nome da Equipe"
-    
+      if (editar) {
+        return "Novo nome da equipe"
+
+      } else if (cadastro) {
+        return "Nome da Equipe"
+
+      } else {
+        return nome
+      }
+
     } else {
       return nome
     }
   }
 
-  const colaboradores: IColaborador[] = []
+  if (cadastro) {
 
-  for (let i=1; i <= 4 ; i++) {
-    const colaborador: IColaborador = {
-      id: "0",
-      nome: "Nome do funcionario",
-      cargo: "Cargo do funcionario",
-      telefone: "00 000000000",
-      email: "exemplo@ex.com",
-      linkFoto: "https://www.wikiaves.com/img/semfoto.png"
+
+    for (let i = 1; i <= 4; i++) {
+      const colaborador: IColaborador = {
+        id: "0",
+        nome: "Nome do funcionario",
+        cargo: "Cargo do funcionario",
+        telefone: "00 000000000",
+        email: "exemplo@ex.com",
+        linkFoto: "https://www.wikiaves.com/img/semfoto.png"
+      }
+
+      colaboradores.push(colaborador)
     }
-
-    colaboradores.push(colaborador)
   }
+
+  useEffect(() => {
+    if (idEquipe && editar) {
+      const fetchEquipe = async () => {
+        const equipe = await buscarEquipe(idEquipe);
+        if (equipe) {
+          setId(equipe.id ?? "")
+          setNome(equipe.nome)
+          setCorPrimaria(equipe.corPrimaria)
+          setCorSecundaria(equipe.corSecundaria)
+        }
+      };
+
+      fetchEquipe();
+    }
+  }, [idEquipe, editar]);
 
   useEffect(() => {
     const fetchEquipeChange = async () => {
       if (equipe) {
         const equipe: IEquipe = {
-          nome:setNomeEquipe(),
+          nome: setNomeEquipe(),
           corPrimaria,
           corSecundaria
         }
-    
+
         setEquipe(equipe)
       }
     };
 
-    
+
     fetchEquipeChange();
-    
+
   }, [equipe]);
 
 
@@ -100,7 +135,7 @@ const FormularioCadastroEquipe = () => {
   return (
     <section className='formularioCadastroEquipe'>
       <form onSubmit={Submit}>
-        <h2>Preencha os dados para criar uma nova equipe.</h2>
+        <h2>{cadastro ? "Preencha os dados para criar uma nova equipe." : editar ? "Edite os dados conforme nescessario." : ""}</h2>
 
         <CampoTexto
           onAlterado={value => setNome(value)}
@@ -121,16 +156,16 @@ const FormularioCadastroEquipe = () => {
           />
         </div>
 
-        <Botao>Criar equipe</Botao>
+        <Botao>{cadastro ? "Criar equipe" : editar ? "Editar equipe" : ""}</Botao>
       </form>
 
       <Equipe
         equipe={equipe}
         link={false}
-        colaboradoresPadrao={colaboradores}
+        colaboradoresPadrao={cadastro ? colaboradores : undefined}
       />
     </section>
   )
 }
 
-export default FormularioCadastroEquipe
+export default FormularioEquipe

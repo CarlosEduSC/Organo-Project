@@ -1,3 +1,4 @@
+import './index.css'
 import Painel from '../../components/Painel'
 import { Outlet } from 'react-router-dom'
 import Footer from '../../components/Footer'
@@ -5,11 +6,12 @@ import Footer from '../../components/Footer'
 const PaginaBase = () => {
   return (
     <div className='pagina-base'>
-        <Painel/>
+      <Painel />
+      <section className='conteudo'>
+        <Outlet />
+      </section>
 
-        <Outlet/>
-
-        <Footer/>
+      <Footer />
     </div>
   )
 }

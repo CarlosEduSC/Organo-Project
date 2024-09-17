@@ -37,6 +37,11 @@ const Menu = () => {
   const Colaboradores = () => {
     navigate("/colaboradores")
   }
+
+  const Perfil = () => {
+    navigate("/perfil")
+  }
+
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
@@ -61,6 +66,7 @@ const Menu = () => {
             <img className='menu-image' src='https://cdn.icon-icons.com/icons2/930/PNG/512/menu_icon-icons.com_72311.png' alt='Menu' onClick={menuClick} />
 
             {isActive && <div className="menu-options" aria-labelledby="dropdownMenuLink">
+              {location.pathname != "/perfil" && location.pathname != "/login" && location.pathname != "/cadastro" ? <a className='menu-item' onClick={Perfil}>Perfil</a> : <></>}
               {location.pathname != "/" && location.pathname != "/login" && location.pathname != "/cadastro" ? <a className="menu-item" onClick={PaginaInicialClick}>Pagina Inicial</a> : <></>}
               {location.pathname != "/cadastrarColaborador" && location.pathname != "/login" && location.pathname != "/cadastro" ? <a className="menu-item" onClick={CadastroColaboradorClick}>Cadastrar colaborador</a> : <></>}
               {location.pathname != "/cadastrarEquipe" && location.pathname != "/login" && location.pathname != "/cadastro" ? <a className='menu-item' onClick={CadastroEquipe}>Cadastrar equipe</a> : <></>}
@@ -69,9 +75,9 @@ const Menu = () => {
           </> :
 
           <>
-            {location.pathname == "/login" ? <div className='cadastrar-login' onClick={cadastrarClick}>Cadastrar-se</div> 
-            
-            : <div className='cadastrar-login' onClick={loginClick}>Entrar</div>}
+            {location.pathname == "/login" ? <div className='cadastrar-login' onClick={cadastrarClick}>Cadastrar-se</div>
+
+              : <div className='cadastrar-login' onClick={loginClick}>Entrar</div>}
           </>}
 
       </div>

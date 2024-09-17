@@ -11,6 +11,8 @@ import MostrarEquipe from "./pages/MostrarEquipe"
 import MostrarColaborador from "./pages/MostrarColaborador"
 import CadastroUsuario from "./pages/CadastroUsuario"
 import EditarUsuario from "./pages/EditarUsuario"
+import Perfil from "./pages/Perfil"
+import EditarEquipe from "./pages/EditarEquipe"
 
 const AppRoutes = () => {
     return (
@@ -24,7 +26,9 @@ const AppRoutes = () => {
 
                     <Route path="/" element={<ProtectedRoute element={<PaginaInicial />} />} />
 
-                    <Route path="/editarUsuario" element={<ProtectedRoute element={<EditarUsuario />} />} />
+                    <Route path="/perfil" element={<ProtectedRoute element={<Perfil />} />} />
+
+                    <Route path="/editarUsuario/:idUsuario" element={<ProtectedRoute element={<EditarUsuario />} />} />
 
                     <Route path="/cadastrarColaborador" element={<ProtectedRoute element={<CadastroColaborador />} />} />
 
@@ -37,6 +41,8 @@ const AppRoutes = () => {
                     <Route path="/cadastrarEquipe" element={<ProtectedRoute element={<CadastroEquipe />} />} />
 
                     <Route path="/equipe/:idEquipe" element={<ProtectedRoute element={<MostrarEquipe/>}/>}/>
+
+                    <Route path="/editarEquipe/:idEquipe" element={<ProtectedRoute element={<EditarEquipe />} />} />
 
                     <Route path="/adicionarColaborador/:idEquipe" element={<ProtectedRoute element={<MostrarColaboradores adicionar={true}/>} />} />
 

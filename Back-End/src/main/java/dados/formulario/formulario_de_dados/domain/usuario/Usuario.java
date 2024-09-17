@@ -30,11 +30,13 @@ public class Usuario implements UserDetails{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String nome;
     private String email;
     private String senha;
     private Boolean ativo;
 
-    public Usuario(@Valid DadosAutenticacao dados) {
+    public Usuario(@Valid DadosCadastrarUsuario dados) {
+        this.nome = dados.nome();
         this.email = dados.email();
         this.senha = dados.senha();
         this.ativo = true;
@@ -42,12 +44,17 @@ public class Usuario implements UserDetails{
 
     public Usuario(DadosDetalharUsuario dados) {
         this.id = dados.id();
+        this.nome = dados.nome();
         this.email = dados.email();
         this.senha = dados.senha();
         this.ativo = true;
     }
 
     public void atualizarUsuario(@Valid DadosAtualizarUsuario dados) {
+        if (dados.nome() != null) {
+            this.nome = dados.nome();
+        }
+
         if (dados.email() != null) {
             this.email = dados.email();
         }

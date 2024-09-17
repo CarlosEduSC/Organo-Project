@@ -6,12 +6,6 @@ import useAuthentication from '../../shared/methods/useAuthentication'
 const Painel = () => {
   const navigate = useNavigate()
 
-  const isAuthenticated = useAuthentication();
-
-  const location = useLocation()
-
-  console.log("location: " + location.hash)
-
   const onClickLogo = () => {
     navigate('/')
   }

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import dados.formulario.formulario_de_dados.domain.usuario.DadosAtualizarUsuario;
-import dados.formulario.formulario_de_dados.domain.usuario.DadosAutenticacao;
+import dados.formulario.formulario_de_dados.domain.usuario.DadosCadastrarUsuario;
 import dados.formulario.formulario_de_dados.domain.usuario.DadosDetalharUsuario;
 import dados.formulario.formulario_de_dados.domain.usuario.Usuario;
 import dados.formulario.formulario_de_dados.domain.usuario.UsuarioRepository;
@@ -35,7 +35,7 @@ public class UsuarioController {
     @SuppressWarnings("rawtypes")
     @Transactional
     @PostMapping("/cadastrar")
-    public ResponseEntity cadastrarUsuario(@Valid @RequestBody DadosAutenticacao dados,
+    public ResponseEntity cadastrarUsuario(@Valid @RequestBody DadosCadastrarUsuario dados,
             UriComponentsBuilder uriBuilder) {
         var usuario = new Usuario(dados);
 
