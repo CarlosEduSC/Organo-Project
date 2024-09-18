@@ -1,1 +1,0 @@
-alter table equipes add ativo tinyint not null;

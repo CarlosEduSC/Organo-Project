@@ -22,11 +22,12 @@ const Perfil = () => {
     <div className="perfil">
       <DetalharUsuario/>
 
-      <MostrarColaboradores />
+      <MostrarColaboradores perfil={true}/>
 
       {equipes.length != 0 ? equipes.map(equipe => <Equipe
         key={equipe.id}
         equipe={equipe}
+        link={true}
       />) : <h1 className='mensagem'>Você ainda não possui equipes!</h1>}
     </div>
   )

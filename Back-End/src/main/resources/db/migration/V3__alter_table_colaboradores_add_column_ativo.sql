@@ -1,1 +1,0 @@
-alter table colaboradores add ativo tinyint not null;

@@ -63,7 +63,7 @@ const Equipe = ({ equipe, colaboradoresPadrao = [], link = false, adicionarColab
   }, [colaboradores, equipe]);
 
   return (
-    <section className='equipe' style={{ backgroundColor: equipe.corSecundaria , height: editar ? "604px" : "" }}>
+    <section className='equipe' style={{ backgroundColor: equipe.corSecundaria , height: colaboradores.length <= 6 ? editar ? "668px" : "auto" : "auto" }}>
       {editar ? <img
         className='edit-equipe'
         src='/images/edit.png'

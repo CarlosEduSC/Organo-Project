@@ -8,11 +8,12 @@ import { IEquipe } from '../../shared/interfaces/IEquipe';
 import { buscarEquipe } from '../../shared/methods/Equipe/BuscarEquipe';
 
 interface MostrarColaboradoresProps {
+  perfil?: boolean
   adicionar?: boolean
   excluirEditar?: boolean
 }
 
-const MostrarColaboradores = ({ adicionar, excluirEditar }: MostrarColaboradoresProps) => {
+const MostrarColaboradores = ({perfil = false, adicionar, excluirEditar }: MostrarColaboradoresProps) => {
   const [colaboradores, setColaboradores] = useState<IColaborador[]>([]);
   const [equipe, setEquipe] = useState<IEquipe>()
   const [loading, setLoading] = useState<boolean>(true);
@@ -52,12 +53,14 @@ const MostrarColaboradores = ({ adicionar, excluirEditar }: MostrarColaboradores
   return (
     <div
       className={colaboradores.length > 0 ? "mostrar-colaboradores" : "sem-colaboradores"}
-      style={{ height: colaboradores.length <= 6 ? "604px" : "auto" , backgroundColor: idEquipe ? equipe?.corSecundaria : ""}}>
+      style={{ height: perfil ? colaboradores.length == 0 ? "195px" : "auto" :  colaboradores.length <= 6 ? idEquipe ? "668px" : "630px" : "auto",
+      backgroundColor: idEquipe ? equipe?.corSecundaria : "",
+      marginBottom: perfil ? "50px" : ""}}>
       {loading ? (
         <p>Carregando colaboradores...</p>
       ) : colaboradores.length > 0 ? (
         <div className='colaboradores'>
-          {idEquipe ? <h1 style={{color: idEquipe ? equipe?.corPrimaria : ""}}>Selecione um colaborador</h1> : <></>}
+          {idEquipe ? <h1 style={{color: idEquipe ? equipe?.corPrimaria : ""}}>Selecione um colaborador</h1> : <h1>Colaboradores</h1>}
           {colaboradores.map(colaborador => (
             <Colaborador
               key={colaborador.nome}

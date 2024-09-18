@@ -3,6 +3,7 @@ create table equipes (
     nome varchar(45) not null unique,
     cor_primaria varchar(7) not null,
     cor_secundaria varchar(7) not null,
+    ativo tinyint not null,
 
     primary key (id)
 );

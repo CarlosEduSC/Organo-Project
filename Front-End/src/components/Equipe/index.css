@@ -1,6 +1,5 @@
 .equipe {
     text-align: center;
-    padding: 32px;
     background-image: url(../../../images/fundo.png);
     width: 100%;
 }
@@ -43,8 +42,8 @@
     position: absolute;
     width: 40px;
     height: 40px;
-    left: 1787px;
-    bottom: 730px;
+    left: 1800px;
+    bottom: 800px;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
     border-radius: 100%;
     visibility: hidden;
@@ -55,7 +54,8 @@
     position: absolute;
     width: 30px;
     height: 30px;
-    left: 1790px;
+    left: 1805px;
+    bottom: 750px;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
     border-radius: 100%;
     visibility: hidden;
@@ -63,11 +63,11 @@
 }
 
 .equipe .excluir {
-    position: absolute;
+    position: relative;
     width: 35px;
     height: 35px;
-    left: 1795px;
-    top: 700px;
+    top: 595px;
+    left: 930px;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
     border-radius: 100%;
     visibility: hidden;

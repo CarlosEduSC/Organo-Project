@@ -1,9 +1,8 @@
 .banner {
     background-color: #6278f7;
     margin:  0px auto 70px auto;
-    border: 5px solid;
     border-radius: 100px;
-    width: 80%;
+    width: 70%;
 }
 
 .banner img {

@@ -40,7 +40,6 @@ const FormularioUsuario = ({ editar = false, cadastrar = false, logar = false, i
           setId(usuario.id ?? "")
           setNome(usuario.nome)
           setEmail(usuario.email)
-          setSenha(usuario.senha)
           setUsuario(usuario)
         }
       };
@@ -87,10 +86,6 @@ const FormularioUsuario = ({ editar = false, cadastrar = false, logar = false, i
   const Submit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
-    if (senha == usuario?.senha) {
-      setConfirmar(senha)
-    }
-
     const usuarioEnviado: IUsuario = {
       id: id != "" ? id : undefined,
       nome,
@@ -133,7 +128,7 @@ const FormularioUsuario = ({ editar = false, cadastrar = false, logar = false, i
           type="password"
         />
 
-        {cadastrar || editar && senha != usuario?.senha ? <CampoTexto
+        {cadastrar || editar ? <CampoTexto
           onAlterado={value => setConfirmar(value)}
           value={confirmar}
           required={true}

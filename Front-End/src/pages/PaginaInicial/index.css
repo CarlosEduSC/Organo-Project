@@ -3,7 +3,7 @@
     display: block;
     justify-content: space-around;
     width: 100%;
-    padding-top: 70px;
+    padding-top: 15px;
 }
 
 .paginaInicial .mensagem {
@@ -11,5 +11,4 @@
     color: #6278f7;
     display: flex;
     justify-content: center;
-    margin-bottom: 30px;
 }

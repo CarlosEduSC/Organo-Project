@@ -3,9 +3,11 @@ package dados.formulario.formulario_de_dados.domain.usuario;
 import java.util.Collection;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -38,7 +40,7 @@ public class Usuario implements UserDetails{
     public Usuario(@Valid DadosCadastrarUsuario dados) {
         this.nome = dados.nome();
         this.email = dados.email();
-        this.senha = dados.senha();
+        this.senha = codificarSenha(dados.senha());
         this.ativo = true;
     }
 
@@ -60,7 +62,7 @@ public class Usuario implements UserDetails{
         }
 
         if (dados.senha() != null) {
-            this.senha = dados.senha();
+            this.senha = codificarSenha(dados.senha());
         }
 
         if (dados.ativo() != null) {
@@ -70,6 +72,12 @@ public class Usuario implements UserDetails{
 
     public void desativarUsuario() {
         this.ativo = false;
+    }
+
+    public String codificarSenha(String senha) {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        
+        return passwordEncoder.encode(senha);
     }
 
     @Override
