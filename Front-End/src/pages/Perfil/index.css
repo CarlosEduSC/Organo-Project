@@ -3,6 +3,7 @@
     display: block;
     justify-content: space-around;
     width: 100%;
+    text-align: center;
 }
 
 .perfil .mensagem {
@@ -11,4 +12,14 @@
     display: flex;
     justify-content: center;
     margin-bottom: 30px;
+}
+
+.perfil .titulo {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 30px;
+    margin: 60px 0px;
+    width: 100%;
+    color: #6278f7;
 }

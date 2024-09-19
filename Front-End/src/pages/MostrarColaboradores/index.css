@@ -22,8 +22,7 @@
 .sem-colaboradores {
     text-align: center;
     padding: 32px;
-    background-image: url(../../../images/fundo.png);
-    background-color: #F5F5F5;
+    width: 100%;
 }
 
 .sem-colaboradores h1 {

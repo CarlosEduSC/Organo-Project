@@ -6,6 +6,7 @@ import { buscarTodosColaboradoresAtivos } from '../../shared/methods/Colaborador
 import { useParams } from 'react-router-dom';
 import { IEquipe } from '../../shared/interfaces/IEquipe';
 import { buscarEquipe } from '../../shared/methods/Equipe/BuscarEquipe';
+import { url } from 'inspector';
 
 interface MostrarColaboradoresProps {
   perfil?: boolean
@@ -53,9 +54,10 @@ const MostrarColaboradores = ({perfil = false, adicionar, excluirEditar }: Mostr
   return (
     <div
       className={colaboradores.length > 0 ? "mostrar-colaboradores" : "sem-colaboradores"}
-      style={{ height: perfil ? colaboradores.length == 0 ? "195px" : "auto" :  colaboradores.length <= 6 ? idEquipe ? "668px" : "630px" : "auto",
+      style={{ height: perfil ? colaboradores.length == 0 ? "195px" : "auto" :  colaboradores.length <= 6 ? idEquipe ? "668px" : "600px" : "auto",
       backgroundColor: idEquipe ? equipe?.corSecundaria : "",
-      marginBottom: perfil ? "50px" : ""}}>
+      marginBottom: perfil ? "50px" : "",
+      backgroundImage: idEquipe && "url(../../../images/fundo.png)"}}>
       {loading ? (
         <p>Carregando colaboradores...</p>
       ) : colaboradores.length > 0 ? (
@@ -74,7 +76,7 @@ const MostrarColaboradores = ({perfil = false, adicionar, excluirEditar }: Mostr
           ))}
         </div>
       ) : (
-        <h1>Nenhum colaborador cadastrado.</h1>
+        <h1 style={{color: idEquipe ? equipe?.corPrimaria : ""}}>Nenhum colaborador cadastrado.</h1>
       )}
     </div>
   )

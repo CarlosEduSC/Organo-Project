@@ -55,17 +55,17 @@ public class Equipe {
             this.nome = dados.nome();
         }
 
-        if (dados.corPrimaria() != null && isValidHexColor(dados.corPrimaria()) == true) {
+        if (isValidHexColor(dados.corPrimaria()) == true) {
             this.corPrimaria = dados.corPrimaria();
         
-        } else {
+        } else if (dados.corPrimaria() != null){
             this.corPrimaria = "#D9D9D9";
         }
 
-        if (dados.corSecundaria() != null && isValidHexColor(dados.corSecundaria()) == true) {
+        if (isValidHexColor(dados.corSecundaria()) == true) {
             this.corSecundaria = dados.corSecundaria();
         
-        } else {
+        } else  if (dados.corSecundaria() != null) {
             this.corSecundaria = "#F5F5F5";
         }
 

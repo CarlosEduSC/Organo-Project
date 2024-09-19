@@ -128,11 +128,24 @@ const Colaborador = ({ colaborador, corPrimaria = "#6278f7", corSecundaria = "#E
           />
         }
 
-        <img className='foto' src={colaborador.linkFoto} alt={colaborador.nome} onClick={handleClickPerfil} />
+        <img
+          className='foto'
+          src={colaborador.linkFoto}
+          alt={colaborador.nome}
+          onClick={handleClickPerfil}
+          style={{ cursor: colaborador.nome != "Nome do colaborador" ? "pointer" : "auto" }}
+        />
+
       </div>
 
       <div className='rodape'>
-        <h4 style={{ color: corPrimaria }} onClick={handleClickPerfil}>{colaborador.nome}</h4>
+        <h4 style={{
+          color: corPrimaria,
+          cursor: colaborador.nome != "Nome do colaborador" ? "pointer" : "auto"
+        }}
+          onClick={handleClickPerfil}
+        >{colaborador.nome}</h4>
+
         <h5>{colaborador.cargo}</h5>
       </div>
     </div>

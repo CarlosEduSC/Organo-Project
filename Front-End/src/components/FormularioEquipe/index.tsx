@@ -52,8 +52,8 @@ const FormularioEquipe = ({ cadastro = false, editar = false, idEquipe = "" }) =
     for (let i = 1; i <= 4; i++) {
       const colaborador: IColaborador = {
         id: "0",
-        nome: "Nome do funcionario",
-        cargo: "Cargo do funcionario",
+        nome: "Nome do colaborador",
+        cargo: "Cargo do colaborador",
         telefone: "00 000000000",
         email: "exemplo@ex.com",
         linkFoto: "https://www.wikiaves.com/img/semfoto.png"

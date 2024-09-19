@@ -24,6 +24,8 @@ const Perfil = () => {
 
       <MostrarColaboradores perfil={true}/>
 
+      <h1 className='titulo'>Equipes</h1>
+
       {equipes.length != 0 ? equipes.map(equipe => <Equipe
         key={equipe.id}
         equipe={equipe}
