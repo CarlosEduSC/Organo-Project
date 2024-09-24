@@ -13,7 +13,7 @@ services:
       - organo_project_rede
 
   front-end:
-    image: carlosedusc/organo_project_front:1.0
+    image: carlosedusc/organo_project_front:1.1
     container_name: organo-project-front-end
     ports:
       - 5173:5173
@@ -23,7 +23,7 @@ services:
       - back-end
 
   back-end:
-    image: carlosedusc/organo_project_back:1.0
+    image: carlosedusc/organo_project_back:1.1
     container_name: organo-project-back-end
     ports:
       - 8080:8080
